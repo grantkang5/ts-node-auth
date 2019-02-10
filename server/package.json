@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "devDependencies": {
+    "ts-node": "3.3.0",
+    "@types/node": "^8.0.29",
+    "typescript": "2.5.2"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.23",
+    "apollo-server-express": "^2.3.3",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "graphql": "*",
+    "helmet": "^3.15.0",
+    "lodash": "^4.17.11",
+    "morgan": "*",
+    "nodemon": "^1.18.9",
+    "passport": "^0.4.0",
+    "pg": "^7.3.0",
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "0.2.9"
+  },
+  "scripts": {
+    "dev": "nodemon --exec ts-node -- ./src/index.ts",
+    "start": "ts-node src/index.ts"
+  }
+}
