@@ -1,20 +1,18 @@
 import { gql } from 'apollo-server-express'
 import { find, filter } from 'lodash'
 import { User } from '../entity/User'
-import { getRepository, getConnection } from 'typeorm'
+import { getCustomRepository, getRepository } from 'typeorm'
+import UserRepository from '../repositories/UserRepository'
 
 export default {
   Query: {
-    users: async (parentValue, args, context, info) => {
+    users: async (parentValue, args) => {
       const users = await getRepository(User).find()
-      console.log('Users', users)
       return users
     },
-    user: async(parentValue, args, context) => {
-      console.log(`Querying user with id ${args.id}`, context)
-      const user = await getRepository(User).find({ where: { id: args.id } })
-      console.log(user)
-      return user[0]
+    user: async (parentValue, args) => {
+      console.log(`Querying user with id ${args.id}`)
+      return await getCustomRepository(UserRepository).findById(args.id)
     }
   },
 
