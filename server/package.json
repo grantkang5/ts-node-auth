@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
-    "ts-node": "3.3.0",
+    "@types/bcryptjs": "*",
     "@types/node": "^8.0.29",
+    "ts-node": "3.3.0",
     "typescript": "2.5.2"
   },
   "dependencies": {
-    "@types/node": "^10.12.23",
     "apollo-server-express": "^2.3.3",
-    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "2.4.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
@@ -21,9 +21,11 @@
     "morgan": "*",
     "nodemon": "^1.18.9",
     "passport": "^0.4.0",
+    "passport-local": "*",
     "pg": "^7.3.0",
     "reflect-metadata": "^0.1.10",
-    "typeorm": "0.2.9"
+    "typeorm": "0.2.9",
+    "connect-redis": "3.4.0"
   },
   "scripts": {
     "dev": "nodemon --exec ts-node -- ./src/index.ts",

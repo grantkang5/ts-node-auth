@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import 'reflect-metadata'
 import typeDefs from './schema'
 import resolvers from './resolvers/user'
 
@@ -11,6 +11,7 @@ const session = require('express-session')
 const { createConnection } = require('typeorm')
 const { ApolloServer, gql } = require('apollo-server-express')
 const passport = require('passport')
+const RedisStore = require('connect-redis')(session)
 
 const startServer = async () => {
   const connection = await createConnection()
@@ -19,15 +20,33 @@ const startServer = async () => {
       app.use(cors())
       app.use(bodyParser.json())
       app.use(helmet())
-      app.use(session({
-        resave: true,
-        saveUninitialized: true,
-        secret: 'qid',
-        // cookie: { secure: true } /* enable for https prod */
-      }))
+      app.use(
+        session({
+          resave: true,
+          saveUninitialized: true,
+          secret: 'kalandra',
+          store: new RedisStore({
+            host: process.env.REDIS_HOST,
+            port: process.env.REDIS_PORT,
+            autoReconnect: true
+          })
+        })
+      )
+
+      app.use(passport.initialize())
+      app.use(passport.session())
 
       // GraphQL Setup
-      const apolloServer = new ApolloServer({ typeDefs, resolvers })
+      const apolloServer = new ApolloServer({
+        typeDefs,
+        resolvers,
+        playground: {
+          settings: {
+            'request.credentials': 'include' // this setting is required to pass req.user from playground
+          }
+        },
+        context: ({ req }: any) => ({ req })
+      })
       apolloServer.applyMiddleware({ app })
 
       // Express routes
@@ -35,8 +54,14 @@ const startServer = async () => {
         res.send('Hello World 3')
       })
 
+      app.get('/secret', (req, res) => {
+        res.send('secret')
+      })
+
       app.listen(5000, err => {
-        console.log(`Listening on port 5000 ${process.env.NODE_ENV}`, process.env.PG_PORT)
+        console.log(
+          `Listening on port 5000`
+        )
       })
     })
     .catch(error => console.log(error))

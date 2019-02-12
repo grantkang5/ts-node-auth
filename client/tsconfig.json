@@ -3,6 +3,12 @@
     "outDir": "build/lib",
     "module": "esnext",
     "target": "es5",
+    "types": [
+      "apollo-client",
+      "apollo-boost",
+      "react",
+      "react-dom"
+    ],
     "lib": [
       "es5",
       "es6",

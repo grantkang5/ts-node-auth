@@ -15,6 +15,7 @@ export default gql`
   type Mutation {
     signUp(email: String!, password: String!): User!
     signIn(email: String!, password: String!): User!
+    logOut: User
     deleteUser(id: ID!): User
     addUser(email: String!, password: String!): User!
   }
