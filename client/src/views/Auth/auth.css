@@ -1,0 +1,9 @@
+.auth-container {
+  padding: 25px 50px;
+}
+
+.auth-container > h3 {
+  font-family: "Luckiest Guy";
+  color: #17cbc4;
+  letter-spacing: 1.5px;
+}

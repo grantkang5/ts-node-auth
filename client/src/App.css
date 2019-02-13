@@ -15,14 +15,14 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
   position: relative;
 }
 
-.header {
-  position: fixed;
-  top: 50px;
-  right: 75px;
+.main-content {
+  width: 720px;
+  height: 480px;
+  display: inline-block;
+  text-align: left;
 }
 
 .App-link {

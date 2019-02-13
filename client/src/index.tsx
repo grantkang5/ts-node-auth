@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-import ApolloClient, { InMemoryCache } from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo-hooks'
+import client from './apollo-client';
 
 import AppRouter from './Router'
 
@@ -16,10 +16,6 @@ const theme = createMuiTheme({
   typography: {
     useNextVariants: true,
   },
-})
-
-const client = new ApolloClient({
-  cache: (new InMemoryCache()).restore({})
 })
 
 const Root = () => {

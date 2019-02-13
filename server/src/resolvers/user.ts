@@ -14,6 +14,9 @@ export const resolvers: IResolvers = {
     },
     user: async (_, { id }: { id: number }) => {
       return await getCustomRepository(UserRepository).findById(id)
+    },
+    me: async (_, args, { req }) => {
+      return req.user
     }
   },
 

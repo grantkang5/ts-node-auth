@@ -7,7 +7,7 @@
       "apollo-client",
       "apollo-boost",
       "react",
-      "react-dom"
+      "yup"
     ],
     "lib": [
       "es5",

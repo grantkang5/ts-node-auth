@@ -10,6 +10,7 @@ export default gql`
   type Query {
     users: [User!]
     user(id: ID!): User
+    me: User
   }
 
   type Mutation {
@@ -17,6 +18,5 @@ export default gql`
     signIn(email: String!, password: String!): User!
     logOut: User
     deleteUser(id: ID!): User
-    addUser(email: String!, password: String!): User!
   }
 `
