@@ -25,9 +25,7 @@ const AuthForm = (props: OtherProps) => {
   const onSubmit = useMutation(mutation)
 
   if (data.me) {
-    return (
-      <Redirect push to="/" />
-    )
+    return <Redirect push to="/" />
   }
 
   return (
@@ -41,10 +39,12 @@ const AuthForm = (props: OtherProps) => {
           onSubmit({
             variables: { email, password },
             refetchQueries: [{ query: CURRENT_USER }]
-          }).then(null, error => {
-            setFieldError('email', 'Invalid credentials')
+          }).then(() => {
+            setSubmitting(false)
+          }, error => {
+            setFieldError('email', error.graphQLErrors[0].message)
+            setSubmitting(false)
           })
-          setSubmitting(false)
         }}
         validationSchema={validationSchema}
         render={({
@@ -66,7 +66,7 @@ const AuthForm = (props: OtherProps) => {
                 onBlur={handleBlur}
                 value={values.email}
                 placeholder="example@email.com"
-                helperText={touched.email && errors.email || 'Email'}
+                helperText={(touched.email && errors.email) || 'Email'}
                 error={errors.email && touched.email ? true : false}
               />
             </div>
@@ -80,7 +80,7 @@ const AuthForm = (props: OtherProps) => {
                 onBlur={handleBlur}
                 value={values.password}
                 error={errors.password && touched.password ? true : false}
-                helperText={touched.password && errors.password || 'Password'}
+                helperText={(touched.password && errors.password) || 'Password'}
                 placeholder="Must contain at least 8 characters"
               />
             </div>

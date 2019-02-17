@@ -6,8 +6,7 @@
     "types": [
       "apollo-client",
       "apollo-boost",
-      "react",
-      "yup"
+      "react"
     ],
     "lib": [
       "es5",
@@ -27,7 +26,6 @@
     "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "declaration": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,

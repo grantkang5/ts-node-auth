@@ -1,10 +1,7 @@
-import { gql } from 'apollo-server-express'
-import { IResolvers } from 'graphql-tools'
-import { find, filter } from 'lodash'
-import { User } from '../entity/User'
-import { getCustomRepository, getRepository, createQueryBuilder } from 'typeorm'
-import UserRepository from '../repositories/UserRepository'
-import * as bcrypt from 'bcryptjs'
+import { IResolvers } from 'graphql-tools';
+import { getCustomRepository, getRepository } from 'typeorm';
+import { User } from '../entity/User';
+import UserRepository from '../repositories/UserRepository';
 
 export const resolvers: IResolvers = {
   Query: {

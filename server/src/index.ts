@@ -45,7 +45,7 @@ const startServer = async () => {
             'request.credentials': 'include' // this setting is required to pass req.user from playground
           }
         },
-        context: ({ req }: any) => ({ req })
+        context: ({ req, res }: any) => ({ req, res })
       })
       apolloServer.applyMiddleware({ app })
 
